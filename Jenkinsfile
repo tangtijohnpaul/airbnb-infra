@@ -7,7 +7,7 @@ pipeline {
     agent any
     
     tools {
-        terraform 'Terraform'
+        terraform 'terraform'
     }
     
     environment {
