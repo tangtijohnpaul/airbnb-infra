@@ -42,16 +42,18 @@ pipeline {
                 sh 'terraform plan'
             }
         } 
-                stage('Checkov scan') {
+            
+         stage('Checkov scan') {
             steps {
                
-                sh 'sudo yum install python3-pip -y'           // Install the package python3-pip 
-                sh 'sudo yum remove python3-requests -y'      // Remove the package python3-requests already with the AMI
-                sh 'sudo pip3 install requests -y'            // Use pip3 to install the package called requests  
-                sh 'sudo pip3 install checkov -y'             // Use pip3 to install the package called checkov   
+                sh 'sudo yum install python3-pip'           // Install the package python3-pip 
+                sh 'sudo yum remove python3-requests'      // Remove the package python3-requests already with the AMI
+                sh 'sudo pip3 install requests'            // Use pip3 to install the package called requests  
+                sh 'sudo pip3 install checkov'             // Use pip3 to install the package called checkov 
+                sh 'checkov -d .'  
            //     sh 'checkov -d . --skip-check CKV_AWS_79,CKV2_AWS_41'   // use checkov to scan the terraform code
             }
-        }
+    
          stage('terraform apply') {
             steps {
                 sh 'terraform apply --auto-approve'
@@ -62,7 +64,7 @@ pipeline {
 
         stage('terraform destroy') {
             steps {
-                sh 'terraform destroy --auto-approve'
+                sh 'terraform  --auto-approve'
                 // sh 'terraform apply --auto-approve'
                 // sh 'terraform destroy --auto-approve'
             }
