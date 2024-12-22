@@ -7,7 +7,7 @@ resource "aws_instance" "airbnb-web" {
   }
 }
 
-resource "aws_instance" "airbnb-we" {
+resource "aws_instance" "airbnb-web" {
   ami           =var.ami_id
   instance_type = var.instance_type
   
@@ -24,6 +24,7 @@ resource "aws_instance" "airbnb-prod" {
     Name = "airbnb-web-server"
   }
 }
+/*
 resource "aws_instance" "airbnb-pro" {
   ami           =var.ami_id
   instance_type = var.instance_type
@@ -31,4 +32,4 @@ resource "aws_instance" "airbnb-pro" {
   tags = {
     Name = "airbnb-web-server"
   }
-}
+}*/
